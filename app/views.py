@@ -37,13 +37,13 @@ def singin(request):
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
+            messages.success(request, "login successfully")
             us = User.objects.get(username = request.user)
             us1 = user_details.objects.get(user= request.user)
-            messages.success(request, "login successfully")
             return render(request,'dash.html',{'user':us,'detail':us1})
         else:
             messages.error(request, "something is wrong input")
-            HttpResponseRedirect('/')
+            return HttpResponseRedirect('/')
     else:
         fm = singin_form
         return render(request, 'singin.html',{'form':fm})

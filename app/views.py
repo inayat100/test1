@@ -42,7 +42,7 @@ def singin(request):
             return render(request,'dash.html',{'user':us,'detail':us1})
         else:
             messages.error(request, "something is wrong input")
-            return HttpResponseRedirect('/')
+            return redirect('singin')
     else:
         fm = singin_form
         return render(request, 'singin.html',{'form':fm})
